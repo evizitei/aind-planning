@@ -80,12 +80,13 @@ Init(At(C1, SFO) ∧ At(C2, JFK) ∧ At(C3, ATL) ∧ At(C4, ORD)
 Goal(At(C1, JFK) ∧ At(C3, JFK) ∧ At(C2, SFO) ∧ At(C4, SFO))
 ```
 
-#### TODO: Implement methods and functions in `my_air_cargo_problems.py`
-[x] `AirCargoProblem.get_actions` method including `load_actions` and `unload_actions` sub-functions
-[ ] `AirCargoProblem.actions` method
-[ ] `AirCargoProblem.result` method
-[ ] `air_cargo_p2` function
-[ ] `air_cargo_p3` function
+#### In Progress: Implement methods and functions in `my_air_cargo_problems.py`
+
+- [x] `AirCargoProblem.get_actions` method including `load_actions` and `unload_actions` sub-functions
+- [ ] `AirCargoProblem.actions` method
+- [ ] `AirCargoProblem.result` method
+- [ ] `air_cargo_p2` function
+- [ ] `air_cargo_p3` function
 
 #### TODO: Experiment and document metrics for non-heuristic planning solution searches
 * Run uninformed planning searches for `air_cargo_p1`, `air_cargo_p2`, and `air_cargo_p3`; provide metrics on number of node expansions required, number of goal tests, time elapsed, and optimality of solution for each search algorithm. Include the result of at least three of these searches, including breadth-first and depth-first, in your write-up (`breadth_first_search` and `depth_first_graph_search`).
