@@ -10,12 +10,12 @@ from lp_utils import (
 from my_planning_graph import PlanningGraph
 
 from functools import lru_cache
+from itertools import combinations
 
 
 class AirCargoProblem(Problem):
     def __init__(self, cargos, planes, airports, initial: FluentState, goal: list):
         """
-
         :param cargos: list of str
             cargos in the problem
         :param planes: list of str
@@ -91,8 +91,8 @@ class AirCargoProblem(Problem):
                           expr("In({}, {})".format(c, p)),
                         ]
                         precond_neg = []
-                        effect_add = [expr("At({}, {})".format(c, p))]
-                        effect_rem = [expr("In({}, {})".format(c, a))]
+                        effect_add = [expr("At({}, {})".format(c, a))]
+                        effect_rem = [expr("In({}, {})".format(c, p))]
                         unload = Action(expr("Unload({}, {}, {})".format(c, p, a)),
                                       [precond_pos, precond_neg],
                                       [effect_add, effect_rem])
@@ -178,7 +178,8 @@ class AirCargoProblem(Problem):
         :return: bool
         """
         kb = PropKB()
-        kb.tell(decode_state(state, self.state_map).pos_sentence())
+        cur_state = decode_state(state, self.state_map).pos_sentence()
+        kb.tell(cur_state)
         for clause in self.goal:
             if clause not in kb.clauses:
                 return False
@@ -201,6 +202,17 @@ class AirCargoProblem(Problem):
         pg_levelsum = pg.h_levelsum()
         return pg_levelsum
 
+    def relaxed_result(self, state: str, action: Action):
+        new_state = FluentState([], [])
+        old_state = decode_state(state, self.state_map)
+        for fluent in old_state.pos:
+            if fluent not in action.effect_rem:
+                new_state.pos.append(fluent)
+        for fluent in action.effect_add:
+            if fluent not in new_state.pos:
+                new_state.pos.append(fluent)
+        return encode_state(new_state, self.state_map)
+
     @lru_cache(maxsize=8192)
     def h_ignore_preconditions(self, node: Node):
         """This heuristic estimates the minimum number of actions that must be
@@ -208,8 +220,22 @@ class AirCargoProblem(Problem):
         conditions by ignoring the preconditions required for an action to be
         executed.
         """
-        # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
+        if self.goal_test(node.state):
+            return count
+        count += 1
+        goalset = set(self.goal)
+        useful_actions = [a for a in self.actions_list if len(set(a.effect_add).intersection(goalset)) > 0]
+        while count <= len(useful_actions):
+            action_tuples = list(combinations(useful_actions, count))
+            for action_tuple in action_tuples:
+                cur_state = node.state
+                for action in action_tuple:
+                    cur_state = self.relaxed_result(state=cur_state, action=action)
+                if self.goal_test(cur_state):
+                    return count
+            count += 1
+
         return count
 
 

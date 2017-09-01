@@ -10,10 +10,10 @@ Instead, you will implement domain-independent heuristics.
 ![Progression air cargo search](images/Progression.PNG)
 
 - Part 1 - Planning problems:
-	- READ: applicable portions of the Russel/Norvig AIMA text
-	- GIVEN: problems defined in classical PDDL (Planning Domain Definition Language)
-	- TODO: Implement the Python methods and functions as marked in `my_air_cargo_problems.py`
-	- TODO: Experiment and document metrics
+	- [x] READ: applicable portions of the Russel/Norvig AIMA text
+	- [x] GIVEN: problems defined in classical PDDL (Planning Domain Definition Language)
+	- [x] Implement the Python methods and functions as marked in `my_air_cargo_problems.py`
+	- [ ] Experiment and document metrics
 - Part 2 - Domain-independent heuristics:
 	- READ: applicable portions of the Russel/Norvig AIMA text
 	- TODO: Implement relaxed problem heuristic in `my_air_cargo_problems.py`
@@ -88,7 +88,7 @@ Goal(At(C1, JFK) ∧ At(C3, JFK) ∧ At(C2, SFO) ∧ At(C4, SFO))
 - [x] `air_cargo_p2` function
 - [x] `air_cargo_p3` function
 
-#### TODO: Experiment and document metrics for non-heuristic planning solution searches
+#### In Progress: Experiment and document metrics for non-heuristic planning solution searches
 * Run uninformed planning searches for `air_cargo_p1`, `air_cargo_p2`, and `air_cargo_p3`; provide metrics on number of node expansions required, number of goal tests, time elapsed, and optimality of solution for each search algorithm. Include the result of at least three of these searches, including breadth-first and depth-first, in your write-up (`breadth_first_search` and `depth_first_graph_search`).
 * If depth-first takes longer than 10 minutes for Problem 3 on your system, stop the search and provide this information in your report.
 * Use the `run_search` script for your data collection: from the command line type `python run_search.py -h` to learn more.
@@ -122,8 +122,8 @@ classes, and the search methods in the AIMA library.
 
 - *Planning Graph*
 
-#### TODO: Implement heuristic method in `my_air_cargo_problems.py`
-- `AirCargoProblem.h_ignore_preconditions` method
+#### DONE: Implement heuristic method in `my_air_cargo_problems.py`
+- [x] `AirCargoProblem.h_ignore_preconditions` method
 
 #### TODO: Implement a Planning Graph with automatic heuristics in `my_planning_graph.py`
 - `PlanningGraph.add_action_level` method
