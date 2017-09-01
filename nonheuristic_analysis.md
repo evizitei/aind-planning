@@ -1,16 +1,23 @@
 # Heuristic Analysis
 
 ## Raw Metrics
-| Algo       | problem | expansions | goal tests | time  |
-| ----       | ------- | ---------- | ---------- | ----- |
-| BFS        | 1       | 43         | 56         | 0.03  |
-| BF-Tree    | 1       | 1458       | 1459       | 1.24  |
-| DF-Graph   | 1       | 21         | 22         | 0.02  |
-| DF-Limited | 1       | 101        | 271        | 0.02  |
-| UCS        | 1       | 55         | 57         | 0.04  |
-| BFS        | 2       | 3343       | 4609       | 18.16 |
-| BF-Tree    | 2       |        |        |   |
-| BFS        | 3       | 14663      | 18098      | 138.1 |
+| Algo       | problem | expansions | goal tests | time  | plan size |
+| ----       | ------- | ---------- | ---------- | ----- | --------- |
+| BFS        | 1       | 43         | 56         | 0.03  | 6         |
+| BF-Tree    | 1       | 1458       | 1459       | 1.24  | 6         |
+| DF-Graph   | 1       | 21         | 22         | 0.02  | 20        |
+| DF-Limited | 1       | 101        | 271        | 0.02  | 50        |
+| UCS        | 1       | 55         | 57         | 0.04  | 6         |
+| BFS        | 2       | 3343       | 4609       | 18.16 | 9         |
+| BF-Tree    | 2       | abort      | abort      | n/a   | n/a       |
+| DF-Graph   | 2       | 624        | 625        | 4.15  | 619       |
+| DF-Limited | 2       | abort      | abort      | n/a   | n/a       |
+| UCS        | 2       | 4853       | 4855       | 14.7  | 9         |
+| BFS        | 3       | 14663      | 18098      | 138.1 | 12        |
+| BF-Tree    | 3       | abort      | abort      | n/a   | n/a       |
+| DF-Graph   | 3       | 408        | 409        | 2.21  | 392       |
+| DF-Limited | 3       | abort      | abort      | n/a   | n/a       |
+| UCS        | 3       | 18223      | 18225      | 59.5  | 12        |
 
 ## Optimality Analysis
 
@@ -31,7 +38,15 @@ before.  BFS-tree does not care if a state has been seen before,
 so although it does arrive at the same optimal plan (
  optimal number of steps ) it evaluates *all plans of less than
  that number of steps, even those with many repeated pointless
- steps*.
+ steps*.  For problems 2 and 3 the search ran long enough that I just
+ terminated it.
+
+#### Depth-First Graph Search
+
+Because DFS does track an 'explored' set, it won't loop infinitely, but it is
+still possible to find very long plans of non-repeating but also non-relevant
+intermediate states (like a 619 step plan for problem 2 where a 9 step
+  plan would suffice).
 
 #### Depth-limited search
 
