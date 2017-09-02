@@ -13,13 +13,13 @@ Instead, you will implement domain-independent heuristics.
 	- [x] READ: applicable portions of the Russel/Norvig AIMA text
 	- [x] GIVEN: problems defined in classical PDDL (Planning Domain Definition Language)
 	- [x] Implement the Python methods and functions as marked in `my_air_cargo_problems.py`
-	- [ ] Experiment and document metrics
+	- [x] Experiment and document metrics
 - Part 2 - Domain-independent heuristics:
-	- READ: applicable portions of the Russel/Norvig AIMA text
-	- TODO: Implement relaxed problem heuristic in `my_air_cargo_problems.py`
-	- TODO: Implement Planning Graph and automatic heuristic in `my_planning_graph.py`
-	- TODO: Experiment and document metrics
-- Part 3 - Written Analysis
+	- [x] READ: applicable portions of the Russel/Norvig AIMA text
+	- [ ] Implement relaxed problem heuristic in `my_air_cargo_problems.py`
+	- [ ] Implement Planning Graph and automatic heuristic in `my_planning_graph.py`
+	- [ ] Experiment and document metrics
+- [ ] Part 3 - Written Analysis
 
 ## Environment requirements
 - Python 3.4 or higher
@@ -126,14 +126,14 @@ classes, and the search methods in the AIMA library.
 - [x] `AirCargoProblem.h_ignore_preconditions` method
 
 #### In Progress: Implement a Planning Graph with automatic heuristics in `my_planning_graph.py`
-- `PlanningGraph.add_action_level` method
-- `PlanningGraph.add_literal_level` method
-- `PlanningGraph.inconsistent_effects_mutex` method
-- `PlanningGraph.interference_mutex` method
-- `PlanningGraph.competing_needs_mutex` method
-- `PlanningGraph.negation_mutex` method
-- `PlanningGraph.inconsistent_support_mutex` method
-- `PlanningGraph.h_levelsum` method
+- [x] `PlanningGraph.add_action_level` method
+- [ ] `PlanningGraph.add_literal_level` method
+- [ ] `PlanningGraph.inconsistent_effects_mutex` method
+- [ ] `PlanningGraph.interference_mutex` method
+- [ ] `PlanningGraph.competing_needs_mutex` method
+- [ ] `PlanningGraph.negation_mutex` method
+- [ ] `PlanningGraph.inconsistent_support_mutex` method
+- [ ] `PlanningGraph.h_levelsum` method
 
 
 #### TODO: Experiment and document: metrics of A* searches with these heuristics
