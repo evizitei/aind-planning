@@ -303,7 +303,6 @@ class PlanningGraph():
         :return:
             adds A nodes to the current level in self.a_levels[level]
         """
-        # TODO add action A level to the planning graph as described in the Russell-Norvig text
         # 1. determine what actions to add and create those PgNode_a objects
         # 2. connect the nodes to the previous S literal level
         # for example, the A0 level will iterate through all possible actions for the problem and add a PgNode_a to a_levels[0]
@@ -316,6 +315,10 @@ class PlanningGraph():
             node = PgNode_a(action=action)
             if node.prenodes.issubset(state_level):
                 self.a_levels[level].add(node)
+                for state_node in state_level:
+                    if state_node in node.prenodes:
+                        node.parents.add(state_node)
+                        state_node.children.add(node)
 
     def add_literal_level(self, level):
         """ add an S (literal) level to the Planning Graph
@@ -334,7 +337,21 @@ class PlanningGraph():
         #   may be "added" to the set without fear of duplication.  However, it is important to then correctly create and connect
         #   all of the new S nodes as children of all the A nodes that could produce them, and likewise add the A nodes to the
         #   parent sets of the S nodes
+        action_level = self.a_levels[level - 1]
         self.s_levels.append(set())
+        for a_node in action_level:
+            for eff_node in a_node.effnodes:
+                s_node = None
+                if eff_node in self.s_levels[level]:
+                    for state in self.s_levels[level]:
+                        if state == eff_node:
+                            s_node = state
+                            break
+                else:
+                    s_node = PgNode_s(eff_node.symbol, eff_node.is_pos)
+                    self.s_levels[level].add(s_node)
+                s_node.parents.add(a_node)
+                a_node.children.add(s_node)
 
     def update_a_mutex(self, nodeset):
         """ Determine and update sibling mutual exclusion for A-level nodes
