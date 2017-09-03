@@ -395,7 +395,7 @@ class PlanningGraph():
             return False
         return True
 
-    def inconsistent_effects_mutex(self, node_a1: PgNode_a, node_a2: PgNode_a) -> bool:
+    def inconsistent_effects_mutex(self, node_a1: PgNode_a, node_a2: PgNode_a):
         """
         Test a pair of actions for inconsistent effects, returning True if
         one action negates an effect of the other, and False otherwise.
@@ -409,7 +409,14 @@ class PlanningGraph():
         :param node_a2: PgNode_a
         :return: bool
         """
-        # TODO test for Inconsistent Effects between nodes
+        a1 = node_a1.action
+        a2 = node_a2.action
+        for clause in a1.effect_add:
+            if clause in a2.effect_rem:
+                return True
+        for clause in a1.effect_rem:
+            if clause in a2.effect_add:
+                return True
         return False
 
     def interference_mutex(self, node_a1: PgNode_a, node_a2: PgNode_a) -> bool:
