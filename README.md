@@ -125,7 +125,7 @@ classes, and the search methods in the AIMA library.
 #### DONE: Implement heuristic method in `my_air_cargo_problems.py`
 - [x] `AirCargoProblem.h_ignore_preconditions` method
 
-#### In Progress: Implement a Planning Graph with automatic heuristics in `my_planning_graph.py`
+#### DONE: Implement a Planning Graph with automatic heuristics in `my_planning_graph.py`
 - [x] `PlanningGraph.add_action_level` method
 - [x] `PlanningGraph.add_literal_level` method
 - [x] `PlanningGraph.inconsistent_effects_mutex` method
@@ -133,7 +133,7 @@ classes, and the search methods in the AIMA library.
 - [x] `PlanningGraph.competing_needs_mutex` method
 - [x] `PlanningGraph.negation_mutex` method
 - [x] `PlanningGraph.inconsistent_support_mutex` method
-- [ ] `PlanningGraph.h_levelsum` method
+- [x] `PlanningGraph.h_levelsum` method
 
 
 #### TODO: Experiment and document: metrics of A* searches with these heuristics

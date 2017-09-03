@@ -527,12 +527,19 @@ class PlanningGraph():
                     break
         return inconsistent_support
 
-    def h_levelsum(self) -> int:
+    def h_levelsum(self):
         """The sum of the level costs of the individual goals (admissible if goals independent)
 
         :return: int
         """
         level_sum = 0
-        # TODO implement
-        # for each goal in the problem, determine the level cost, then add them together
+        for clause in self.problem.goal:
+            level_cost = 0
+            for s_level in self.s_levels:
+                literals = [n.symbol for n in s_level if n.is_pos]
+                if clause in literals:
+                    level_sum += level_cost
+                    break;
+                else:
+                    level_cost += 1
         return level_sum
