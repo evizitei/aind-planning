@@ -141,4 +141,54 @@ than the ignore-preconditions heuristic on the same problem.
 Problem 3 demonstrated the same difference, much lower search space and significantly
 less clock time.
 
+## Optimal Plans:
+
+### Problem 1 Optimal Plan
+
+```
+Load(C1, P1, SFO)
+Load(C2, P2, JFK)
+Fly(P1, SFO, JFK)
+Fly(P2, JFK, SFO)
+Unload(C1, P1, JFK)
+Unload(C2, P2, SFO)
+```
+
+### Problem 2 Optimal Plan
+
+```
+Load(C1, P1, SFO)
+Load(C2, P2, JFK)
+Load(C3, P3, ATL)
+Fly(P2, JFK, SFO)
+Unload(C2, P2, SFO)
+Fly(P1, SFO, JFK)
+Unload(C1, P1, JFK)
+Fly(P3, ATL, SFO)
+Unload(C3, P3, SFO)
+```
+
+### Problem 3 Optimal Plan
+
 ## Conclusion
+
+There is non clear best algorithm or heuristic, it's very dependent on
+how big/broad the search space is and how expensive the heuristic is to calculate.
+
+For problems that have a small search space,
+an uniformed search is actually going to perform best in
+terms of time because it won't spend any cycles calculating heuristics.  For
+an optimal plan, uniform cost search would be a good choice, but if you're more concerned
+about execution time or memory consumption than optimality of the solution, depth-first
+search will produce a satisficing plan much more quickly.
+
+For problems with a very large search space, heuristic searches are more or less
+necessary.  Even in this subset of problems, there isn't a clear winner among heuristics
+for every problem.  The ignore_preconditions heuristic is very quick to calculate
+compared to the levelsum heuristic.  For problems that either have an only-moderately
+sized search space, or that have many individual independent clauses in the goal
+with few actions that undo those clauses, ignore_preconditions is going to
+be the clear winner.  For problems with a very large state space though (where
+pruning aggressively at each level is very valuable), levelsum will make up for
+it's expense by having a much smaller number of nodes to search through for a
+solution.
