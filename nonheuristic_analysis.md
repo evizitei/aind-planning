@@ -1,4 +1,4 @@
-# Heuristic Analysis
+# Non-heuristic Analysis
 
 ## Raw Metrics
 | Algo       | problem | expansions | goal tests | time  | plan size |

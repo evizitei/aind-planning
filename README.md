@@ -136,7 +136,7 @@ classes, and the search methods in the AIMA library.
 - [x] `PlanningGraph.h_levelsum` method
 
 
-#### TODO: Experiment and document: metrics of A* searches with these heuristics
+#### In Progress: Experiment and document: metrics of A* searches with these heuristics
 * Run A* planning searches using the heuristics you have implemented on `air_cargo_p1`, `air_cargo_p2` and `air_cargo_p3`. Provide metrics on number of node expansions required, number of goal tests, time elapsed, and optimality of solution for each search algorithm and include the results in your report.
 * Use the `run_search` script for this purpose: from the command line type `python run_search.py -h` to learn more.
 
