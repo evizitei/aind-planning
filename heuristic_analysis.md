@@ -191,4 +191,11 @@ with few actions that undo those clauses, ignore_preconditions is going to
 be the clear winner.  For problems with a very large state space though (where
 pruning aggressively at each level is very valuable), levelsum will make up for
 it's expense by having a much smaller number of nodes to search through for a
-solution.
+solution. [1]
+
+
+### References
+
+[1] Peter Norvig, Stuart Russel.
+    Artificial Intelligence, A Modern Approach.
+    Pearson, 2015.
